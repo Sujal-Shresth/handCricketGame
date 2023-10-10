@@ -6,30 +6,32 @@
     <link rel="stylesheet" href="style.css">
     <title> Hand Cricket | Game</title>
 </head>
-<body>
+<body id="gameBody">
     <div id="gameContainer">
-        <section id="myScoreBoard">
-            <h1>    Your Score: </h1>
-            <p id="yourScore"></p>
+        <section id="myScoreBoard" class="score-board">
+            <h1 class="score-lable">    Your Score: </h1>
+            <span id="yourScore" class="score">0</span>
         </section>
 
         <section id="game">
-            <h1>    Choose Heads or Tails   </h1>
-            
-            <button>    Heads   </button>
-            
-            <button>    Tails   </button>
+            <h1 class="game-section-content">  Choose Heads or Tails  </h1>
+            <h2 class="game-section-content" id="gameH2">  You Won the toss! Choose what you want</h2>
+            <div id="handsDiv" class="game-section-content">
+                <img src="./images/l6.png" alt="" class="hand-img">
+                <img src="./images/r6.png" alt="" class="hand-img">
+            </div>
 
-            <div id="handsDiv">
-                <img src="" alt="">
-                <img src="" alt="">
+            <div id="buttonDiv" class="game-section-content">
+                <button class="button" data-choice="1" id="choice1" onclick="decideToss(document.getElementById('choice1').dataset.choice)">  Heads  </button>
+                <button class="button" data-choice="2" id="choice2" onclick="decideToss(document.getElementById('choice2').dataset.choice)">  Tails  </button>
             </div>
         </section>
 
-        <section id="computerScoreBoard">
-            <h1>    Computer's Score: </h1>
-            <p id="computerScore"></p>
+        <section id="computerScoreBoard" class="score-board">
+            <h1 class="score-lable">    Computer's Score: </h1>
+            <span id="computerScore" class="score">0</span>
         </section>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
