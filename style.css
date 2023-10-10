@@ -1,3 +1,120 @@
-img{
-    width: 300px;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;900&display=swap");
+
+*{
+    margin: 0;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+#largest-container, #gameContainer{
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-family: Poppins;
+}
+
+#rules-section, #game{
+    position: relative;
+    background-image: url('./images/bgimg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+}
+
+#rules-section{
+    height: 100vh;
+    width: 65vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#start-game-section{
+    background-color: #2e2d2a;
+    height: 100vh;
+    width: 35vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+#myScoreBoard{
+    background-color: #005fa2;
+    height:50vh;
+    width: 25vw;
+}
+
+#computerScoreBoard{
+    background-color: #1fa83d;
+    height: 100vh;
+    width: 25vw;
+}
+
+#game{
+    height: 100vh;
+    width: 50vw;
+}
+
+.start-game-section-content{
+    margin: 20px;
+    padding: 20px;
+}
+
+.rules-section-content{
+    margin-left: 7.5vw;
+    margin-right: 10vw;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+h1.start-game-section-content{
+    font-size: 7vh;
+}
+
+h1.rules-section-content{
+    font-size: 7vh;
+    position: fixed;
+    top: 30px;
+}
+h2.start-game-section-content {
+    font-size: 5vh;
+}
+
+h2.rules-section-content{
+    font-size: 4vh;
+    position: fixed;
+    top: 220px;
+}
+p.start-game-section-content {
+    font-size: 3.5vh;
+}
+p.rules-section-content{
+    font-size: 3vh;
+    position: fixed;
+    top: 300px;
+}
+.button.rules-section-content{
+    width: fit-content;
+    position: fixed;
+    bottom: 135px;
+}
+
+.button {
+    background-color: rgba(0, 0, 0, 0.5); 
+    color: white; 
+    border: none; 
+    border-radius: 24px; 
+    padding: 10px 20px; 
+    cursor: pointer; 
+    font-size: 20px; 
+    font-family: Poppins;
+}
+
+.button:hover,
+.button:focus {
+    background-color: rgba(0, 0, 0, 0.7); 
 }
