@@ -65,7 +65,7 @@
 }
 
 .rules-section-content{
-    margin-left: 7.5vw;
+    margin-left: 8vw;
     margin-right: 10vw;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -78,7 +78,7 @@ h1.start-game-section-content{
 h1.rules-section-content{
     font-size: 7vh;
     position: fixed;
-    top: 30px;
+    top: 70px;
 }
 h2.start-game-section-content {
     font-size: 5vh;
@@ -87,7 +87,7 @@ h2.start-game-section-content {
 h2.rules-section-content{
     font-size: 4vh;
     position: fixed;
-    top: 220px;
+    top: 260px;
 }
 p.start-game-section-content {
     font-size: 3.5vh;
@@ -95,12 +95,12 @@ p.start-game-section-content {
 p.rules-section-content{
     font-size: 3vh;
     position: fixed;
-    top: 300px;
+    top: 340px;
 }
 .button.rules-section-content{
     width: fit-content;
     position: fixed;
-    bottom: 135px;
+    bottom: 90px;
 }
 
 .button {
