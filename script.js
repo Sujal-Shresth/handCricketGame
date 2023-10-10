@@ -12,6 +12,7 @@ homePageButton.onclick = () => {
         case 0:
             homePageHeading.innerText = "How to Start the Game";
             homePageParagraph.innerHTML = "Decide the number of wickets. <br> Begin with a toss. <br>The winner of the toss decides who does the batting at first."
+            homePageButton.innerText = "Next"
             break;
 
         case 1:
@@ -29,6 +30,7 @@ homePageButton.onclick = () => {
             6 : Clench your fist with your thumb extended
             <br>
             'Stok': Throw a clenched fist<br>`
+            homePageButton.innerText = "Next"
             break;
 
         case 2:
@@ -38,6 +40,7 @@ homePageButton.onclick = () => {
             Calculate the runs based on the numbers thrown.
             <br>
             For example, if your friend throws a 6, and you throw a 4, you score 4 runs. If you throw a "stok" and your friend throws a 5, you get 5 runs.`
+            homePageButton.innerText = "Next"
             break;
         
         case 3:
@@ -45,6 +48,11 @@ homePageButton.onclick = () => {
             homePageParagraph.innerHTML = `If both players throw out the same hand sign, the batter is out. 
             <br>
             The bowler gets to bat and at the end, who has the highest runs wins.`
+            var anchorTag = document.createElement('a');
+            anchorTag.innerText = "START GAME";
+            anchorTag.setAttribute('href','gamePage.html');
+            homePageButton.innerText = "";
+            homePageButton.append(anchorTag);
             break;
 
     }

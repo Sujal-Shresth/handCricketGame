@@ -6,6 +6,10 @@
     box-sizing: border-box;
 }
 
+a{
+    text-decoration: none;
+    color: white;
+}
 #largest-container, #gameContainer{
     color: white;
     display: flex;
@@ -104,7 +108,7 @@ p.rules-section-content{
 }
 
 .button {
-    background-color: rgba(0, 0, 0, 0.5); 
+    background-color: rgba(26, 84, 21, 0.5); 
     color: white; 
     border: none; 
     border-radius: 24px; 
@@ -114,7 +118,6 @@ p.rules-section-content{
     font-family: Poppins;
 }
 
-.button:hover,
-.button:focus {
-    background-color: rgba(0, 0, 0, 0.7); 
+.button:hover {
+    background-color: rgba(54, 109, 44, 0.7); 
 }
