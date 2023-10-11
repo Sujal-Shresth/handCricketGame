@@ -15,15 +15,15 @@
 
         <section id="game">
             <h1 class="game-section-content">  Choose Heads or Tails  </h1>
-            <h2 class="game-section-content" id="gameH2">  You Won the toss! Choose what you want</h2>
+            <h2 class="game-section-content" id="gameH2"></h2>
             <div id="handsDiv" class="game-section-content">
                 <img src="./images/l6.png" alt="" class="hand-img">
                 <img src="./images/r6.png" alt="" class="hand-img">
             </div>
 
             <div id="buttonDiv" class="game-section-content">
-                <button class="button" data-choice="1" id="choice1" onclick="decideToss(document.getElementById('choice1').dataset.choice)">  Heads  </button>
-                <button class="button" data-choice="2" id="choice2" onclick="decideToss(document.getElementById('choice2').dataset.choice)">  Tails  </button>
+                <button class="button" data-choice="1" id="choice1" onclick="decideToss()">  Heads  </button>
+                <button class="button" data-choice="2" id="choice2" onclick="decideToss()">  Tails  </button>
             </div>
         </section>
 

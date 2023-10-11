@@ -86,26 +86,26 @@ p.start-game-section-content {
 
 h1.rules-section-content{
     font-size: 7vh;
-    position: fixed;
+    position: absolute;
     top: 70px;
 }
 
 
 h2.rules-section-content{
     font-size: 4vh;
-    position: fixed;
+    position: absolute;
     top: 260px;
 }
 
 p.rules-section-content{
     font-size: 3vh;
-    position: fixed;
+    position: absolute;
     top: 340px;
 }
 
 .button.rules-section-content{
     width: fit-content;
-    position: fixed;
+    position: absolute;
     bottom: 90px;
 }
 
