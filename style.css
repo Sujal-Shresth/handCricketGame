@@ -120,6 +120,7 @@ p.rules-section-content{
 }
 
 #game{
+    position: relative;
     height: 100vh;
     width: 50vw;
 }
@@ -156,9 +157,27 @@ h2.game-section-content{
 }
 
 #buttonDiv{
+    position: absolute;
+    bottom: 25vh;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     width: 400px;
 }
 
+#numberDiv{
+    visibility:hidden;
+    position: absolute;
+    bottom: 20vh;
+    width: 20vw;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+#numberDiv .button{
+    margin: 5px;
+    background-color: rgba(89, 124, 85, 0.5);
+}

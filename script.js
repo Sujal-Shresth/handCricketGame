@@ -64,13 +64,7 @@ function decideToss(){
         var randomNumber = Math.random();
         var result;
         if (randomNumber < 0.5) {
-          result = 1;
-        } 
-        else {
-          result = 2;
-        }
-        if(result == 1){
-            gameH2.innerText = "You Won the toss! Choose what you want";
+          gameH2.innerText = "You Won the toss! Choose what you want";
             choice1.innerText = "Batting";
             choice2.innerText = "Balling";
             choice1.onclick = () =>{
@@ -79,9 +73,9 @@ function decideToss(){
             choice2.onclick = () =>{
                 balling();
             }
-        }
-        else{
-            randomNumber = Math.random();
+        } 
+        else {
+          randomNumber = Math.random();
             if (randomNumber < 0.5) {
                 result = 2;
                 gameH2.innerText = "You lost the toss and the computer chose Batting";
@@ -97,9 +91,14 @@ function decideToss(){
               choice2.remove();
               buttonDiv.append(okButton);
               okButton.onclick = () =>{
-                startGame(result);
+                if(result = 1){
+                    batting();
+                }
+                else{
+                    balling();
+                }
               }
-        }
+        } 
 }
 
 function batting(){
@@ -115,7 +114,25 @@ function balling(){
 }
 
 function startGame(batOrBall){
-    console.log("STARTGAME");
-    
+    const numberDiv = document.getElementById("numberDiv");
+    const buttonDiv = document.getElementById("buttonDiv");
+
+    numberDiv.style.visibility = "visible";
+    buttonDiv.style.visibility = "hidden";
+    var computerRuns = randomRuns();
+    var myRuns = choiceRuns();
 }
 
+function randomRuns(){
+    const possibleOutcomes = ['stok',1,2,3,4,5,6];
+    return possibleOutcomes[Math.floor(Math.random() * possibleOutcomes.length)];
+}
+
+
+function ball(){
+
+}
+
+function bat(){
+
+}
