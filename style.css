@@ -169,7 +169,7 @@ h2.game-section-content{
     visibility:hidden;
     position: absolute;
     bottom: 20vh;
-    width: 20vw;
+    width: 15vw;
     height: fit-content;
     display: flex;
     flex-direction: row;

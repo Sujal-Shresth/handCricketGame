@@ -10,8 +10,7 @@ function changeRule() {
         //rule one
         case 0:
             homePageHeading.innerText = "How to Start the Game";
-            homePageParagraph.innerText = `Decide the number of wickets.
-            Begin with a toss. 
+            homePageParagraph.innerText = `Begin with a toss. 
             The winner of the toss decides who does the batting at first.`
             homePageButton.innerText = "Next"
             break;
@@ -19,22 +18,17 @@ function changeRule() {
         //rule two
         case 1:
             homePageHeading.innerText = "Understanding how to represent numbers";
-            homePageParagraph.innerText = `1 : Extend only your index finger
-            2 : Show 'scissors'
-            3 : Extend your middle, ring, and little fingers
-            4 : Add your index finger to the three fingers
-            5 : Show 'paper'
-            6 : Clench your fist with your thumb extended
-            'Stok': Throw a clenched fist<br>`
+            homePageParagraph.innerText = `The number of fingers raised represents the number chosen.
+            Six is represented by a closed fist.`
             homePageButton.innerText = "Next"
             break;
         
         //rule three
         case 2:
             homePageHeading.innerText = "Batting and Scoring";
-            homePageParagraph.innerText = `In batting, both players throw hand signals simultaneously.
+            homePageParagraph.innerText = `In batting, both players throw hand signals, numbers in this case simultaneously.
             Calculate the runs based on the numbers thrown.
-            For example, if your friend throws a 6, and you throw a 4, you score 4 runs. If you throw a "stok" and your friend throws a 5, you get 5 runs.`
+            For example, if computer throws a 6, and you throw a 4, you score 4 runs. If you throw a 1 and the computer throws a 5, you get 5 runs.`
             homePageButton.innerText = "Next"
             break;
         
@@ -49,7 +43,6 @@ function changeRule() {
             homePageButton.innerText = "";
             homePageButton.append(anchorTag);
             break;
-
     }
     rulesCount++;
 }
@@ -58,7 +51,10 @@ const gameH2 = document.getElementById('gameH2');
 const choice1 = document.getElementById('choice1');
 const choice2 = document.getElementById('choice2');
 const buttonDiv = document.getElementById('buttonDiv');
-
+const numberDiv = document.getElementById("numberDiv");
+var okButton = document.createElement('button');
+okButton.innerText = "OK";
+okButton.classList.add('button');
 //function to decide the toss
 function decideToss(){
         var randomNumber = Math.random();
@@ -84,9 +80,6 @@ function decideToss(){
                 result = 1;
                 gameH2.innerText = "You lost the toss and the computer chose Balling";
             }
-            var okButton = document.createElement('button');
-            okButton.innerText = "OK";
-            okButton.classList.add('button');
             choice1.remove();
             choice2.remove();
             buttonDiv.append(okButton);
@@ -118,9 +111,6 @@ function balling(){
 }
 
 function startGame(){
-    const numberDiv = document.getElementById("numberDiv");
-    const buttonDiv = document.getElementById("buttonDiv");
-
     numberDiv.style.visibility = "visible";
     buttonDiv.style.visibility = "hidden";
 }
@@ -136,11 +126,12 @@ var computerNotOut = true;
 
 function updateScore(run){
     var batOrBall = document.getElementById('numberDiv').dataset.batOrBall;
-    console.log(batOrBall);
     const possibleOutcomes = [1,2,3,4,5,6];
     var computerRun = possibleOutcomes[Math.floor(Math.random() * possibleOutcomes.length)];
+
     handImage[0].setAttribute('src',`./images/l${run}.png`);
     handImage[1].setAttribute('src',`./images/r${computerRun}.png`);
+
     if(batOrBall === 'bat'){
         if(notOut){
             if(turn == 1){
@@ -151,6 +142,18 @@ function updateScore(run){
                 gameH2.innerText = "OUT!!";
                 turn++;
                 document.getElementById('numberDiv').dataset.batOrBall = 'ball';
+                var parent = document.getElementById("buttonDiv");
+                while (parent.firstChild) {
+                parent.removeChild(parent.firstChild);
+                }
+                buttonDiv.append(okButton);
+                numberDiv.style.visibility = 'hidden';
+                buttonDiv.style.visibility = 'visible';
+                okButton.onclick = () =>{
+                    if(turn == 1) gameH2.innerText = "It is your turn to Ball";
+                    buttonDiv.style.visibility = 'hidden';
+                    numberDiv.style.visibility = 'visible';
+                }
             }
             else{
                 console.log(computerRun);
@@ -171,25 +174,47 @@ function updateScore(run){
                 gameH2.innerText = "OUT!!";
                 turn++;
                 document.getElementById('numberDiv').dataset.batOrBall = 'bat';
+                var parent = document.getElementById("buttonDiv");
+                while (parent.firstChild) {
+                parent.removeChild(parent.firstChild);
+                }
+                buttonDiv.append(okButton);
+                numberDiv.style.visibility = 'hidden';
+                buttonDiv.style.visibility = 'visible';
+                okButton.onclick = () =>{
+                    if(turn == 1) gameH2.innerText = "It is your turn to Bat";
+                    buttonDiv.style.visibility = 'hidden';
+                    numberDiv.style.visibility = 'visible';
+                }
             }
             else{
                 computerScore += computerRun;
                 computerScoreBoard.innerText = computerScore;
-            }
-            
-            
+            }   
         }
     }
     if(turn == 2){
         if(yourScore > computerScore){
-            alert('you won!!');
+            gameH2.innerText = "You Won!!!!";
         }
         else if(yourScore < computerScore){
-            alert('you lost!!');
+            gameH2.innerText = "You Lost!!!!";
+
         }
         else if(yourScore == computerScore){
-            alert("its a draw!!");
+            gameH2.innerText = "Its a Draw!!!!";
         }
+        var parent = document.getElementById("buttonDiv");
+                while (parent.firstChild) {
+                parent.removeChild(parent.firstChild);
+                }
+                buttonDiv.append(okButton);
+                okButton.innerText = "NEW GAME";
+                numberDiv.style.visibility = 'hidden';
+                buttonDiv.style.visibility = 'visible';
+                okButton.onclick = () =>{
+                    document.location.reload();
+                }
     }
 }
 
