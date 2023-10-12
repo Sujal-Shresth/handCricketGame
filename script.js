@@ -137,38 +137,47 @@ var computerNotOut = true;
 function updateScore(run){
     var batOrBall = document.getElementById('numberDiv').dataset.batOrBall;
     console.log(batOrBall);
+    const possibleOutcomes = [1,2,3,4,5,6];
+    var computerRun = possibleOutcomes[Math.floor(Math.random() * possibleOutcomes.length)];
+    handImage[0].setAttribute('src',`./images/l${run}.png`);
+    handImage[1].setAttribute('src',`./images/r${computerRun}.png`);
     if(batOrBall === 'bat'){
         if(notOut){
-            const possibleOutcomes = [1,2,3,4,5,6];
-            var computerRun = possibleOutcomes[Math.floor(Math.random() * possibleOutcomes.length)];
-            handImage[0].setAttribute('src',`./images/l${run}.png`);
-            handImage[1].setAttribute('src',`./images/r${computerRun}.png`);
-            console.log(computerRun);
-            yourScore += run;
-            console.log(yourScore);
-            yourScoreBoard.innerText = yourScore;
+            if(turn == 1){
+                gameH2.innerText = "It is your turn to Bat"
+            }
             if(computerRun == run){
                 notOut = false;
-                alert('out');
+                gameH2.innerText = "OUT!!";
                 turn++;
                 document.getElementById('numberDiv').dataset.batOrBall = 'ball';
             }
+            else{
+                console.log(computerRun);
+                yourScore += run;
+                console.log(yourScore);
+                yourScoreBoard.innerText = yourScore;
+            }
+            
         }
     }
     else if(batOrBall === 'ball'){
         if(computerNotOut){
-            const possibleOutcomes = [1,2,3,4,5,6];
-            var computerRun = possibleOutcomes[Math.floor(Math.random() * possibleOutcomes.length)];
-            computerScore += computerRun;
-            handImage[0].setAttribute('src',`./images/l${run}.png`);
-            handImage[1].setAttribute('src',`./images/r${computerRun}.png`);
-            computerScoreBoard.innerText = computerScore;
+            if(turn == 1){
+                gameH2.innerText = "It is your turn to Ball"
+            }
             if(computerRun == run){
                 computerNotOut = false;
-                alert('out');
+                gameH2.innerText = "OUT!!";
                 turn++;
-            document.getElementById('numberDiv').dataset.batOrBall = 'bat';
+                document.getElementById('numberDiv').dataset.batOrBall = 'bat';
             }
+            else{
+                computerScore += computerRun;
+                computerScoreBoard.innerText = computerScore;
+            }
+            
+            
         }
     }
     if(turn == 2){
