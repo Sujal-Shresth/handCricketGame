@@ -26,14 +26,13 @@
                 <button class="button" data-choice="2" id="choice2" onclick="decideToss()">  Tails  </button>
             </div>
 
-            <div id="numberDiv" class="game-section-content">
-                <button class="button runButton" data-run="1">1</button>
-                <button class="button runButton" data-run="2">2</button>
-                <button class="button runButton" data-run="3">3</button>
-                <button class="button runButton" data-run="4">4</button>
-                <button class="button runButton" data-run="5">5</button>
-                <button class="button runButton" data-run="6">6</button>
-                <button class="button runButton" data-run="0">Stump</button>
+            <div id="numberDiv" class="game-section-content" data-batOrBall="">
+                <button class="button runButton" data-run="1" onclick="updateScore(1)">1</button>
+                <button class="button runButton" data-run="2" onclick="updateScore(2)">2</button>
+                <button class="button runButton" data-run="3" onclick="updateScore(3)">3</button>
+                <button class="button runButton" data-run="4" onclick="updateScore(4)">4</button>
+                <button class="button runButton" data-run="5" onclick="updateScore(5)">5</button>
+                <button class="button runButton" data-run="6" onclick="updateScore(6)">6</button>
             </div>
         </section>
 

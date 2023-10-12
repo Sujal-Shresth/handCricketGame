@@ -75,26 +75,28 @@ function decideToss(){
             }
         } 
         else {
-          randomNumber = Math.random();
+            randomNumber = Math.random();
             if (randomNumber < 0.5) {
                 result = 2;
                 gameH2.innerText = "You lost the toss and the computer chose Batting";
-              } 
-              else {
+            } 
+            else {
                 result = 1;
                 gameH2.innerText = "You lost the toss and the computer chose Balling";
-              }
-              var okButton = document.createElement('button');
-              okButton.innerText = "OK";
-              okButton.classList.add('button');
-              choice1.remove();
-              choice2.remove();
-              buttonDiv.append(okButton);
-              okButton.onclick = () =>{
-                if(result = 1){
+            }
+            var okButton = document.createElement('button');
+            okButton.innerText = "OK";
+            okButton.classList.add('button');
+            choice1.remove();
+            choice2.remove();
+            buttonDiv.append(okButton);
+            console.log(okButton)
+            console.log(result)
+            okButton.onclick = () =>{
+                if(result == 1){
                     batting();
                 }
-                else{
+                else if(result == 2){
                     balling();
                 }
               }
@@ -104,35 +106,81 @@ function decideToss(){
 function batting(){
     console.log("BATTING");
     gameH2.innerText = "It is your turn to Bat";
-    startGame(1);
+    document.getElementById('numberDiv').dataset.batOrBall = 'bat';
+    startGame();
 }
-
+ 
 function balling(){
     console.log("BALLING");
     gameH2.innerText = "It is your turn to Ball";
-    startGame(2);
+    document.getElementById('numberDiv').dataset.batOrBall = 'ball';
+    startGame();
 }
 
-function startGame(batOrBall){
+function startGame(){
     const numberDiv = document.getElementById("numberDiv");
     const buttonDiv = document.getElementById("buttonDiv");
 
     numberDiv.style.visibility = "visible";
     buttonDiv.style.visibility = "hidden";
-    var computerRuns = randomRuns();
-    var myRuns = choiceRuns();
 }
 
-function randomRuns(){
-    const possibleOutcomes = ['stok',1,2,3,4,5,6];
-    return possibleOutcomes[Math.floor(Math.random() * possibleOutcomes.length)];
+const yourScoreBoard = document.getElementById('yourScore');
+const computerScoreBoard = document.getElementById('computerScore');
+const handImage = document.getElementsByClassName('hand-img');
+var yourScore = 0;
+var computerScore = 0;
+var turn = 0;
+var notOut = true;
+var computerNotOut = true;
+
+function updateScore(run){
+    var batOrBall = document.getElementById('numberDiv').dataset.batOrBall;
+    console.log(batOrBall);
+    if(batOrBall === 'bat'){
+        if(notOut){
+            const possibleOutcomes = [1,2,3,4,5,6];
+            var computerRun = possibleOutcomes[Math.floor(Math.random() * possibleOutcomes.length)];
+            handImage[0].setAttribute('src',`./images/l${run}.png`);
+            handImage[1].setAttribute('src',`./images/r${computerRun}.png`);
+            console.log(computerRun);
+            yourScore += run;
+            console.log(yourScore);
+            yourScoreBoard.innerText = yourScore;
+            if(computerRun == run){
+                notOut = false;
+                alert('out');
+                turn++;
+                document.getElementById('numberDiv').dataset.batOrBall = 'ball';
+            }
+        }
+    }
+    else if(batOrBall === 'ball'){
+        if(computerNotOut){
+            const possibleOutcomes = [1,2,3,4,5,6];
+            var computerRun = possibleOutcomes[Math.floor(Math.random() * possibleOutcomes.length)];
+            computerScore += computerRun;
+            handImage[0].setAttribute('src',`./images/l${run}.png`);
+            handImage[1].setAttribute('src',`./images/r${computerRun}.png`);
+            computerScoreBoard.innerText = computerScore;
+            if(computerRun == run){
+                computerNotOut = false;
+                alert('out');
+                turn++;
+            document.getElementById('numberDiv').dataset.batOrBall = 'bat';
+            }
+        }
+    }
+    if(turn == 2){
+        if(yourScore > computerScore){
+            alert('you won!!');
+        }
+        else if(yourScore < computerScore){
+            alert('you lost!!');
+        }
+        else if(yourScore == computerScore){
+            alert("its a draw!!");
+        }
+    }
 }
 
-
-function ball(){
-
-}
-
-function bat(){
-
-}
