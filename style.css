@@ -11,8 +11,8 @@ a{
     color: white;
 }
 
-.button {
-    background-color: rgba(26, 84, 21, 0.5); 
+.button,.runButton {
+    background-color: rgba(119, 161, 115, 0.5); 
     color: white; 
     border: none; 
     border-radius: 24px; 
@@ -168,7 +168,7 @@ h2.game-section-content{
 #numberDiv{
     visibility:hidden;
     position: absolute;
-    bottom: 20vh;
+    bottom: 15vh;
     width: 15vw;
     height: fit-content;
     display: flex;
@@ -178,6 +178,5 @@ h2.game-section-content{
 }
 
 #numberDiv .button{
-    margin: 5px;
-    background-color: rgba(89, 124, 85, 0.5);
+    margin: 10px;
 }

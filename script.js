@@ -123,7 +123,7 @@ var computerScore = 0;
 var turn = 0;
 var notOut = true;
 var computerNotOut = true;
-
+var balls = 1;
 function updateScore(run){
     var batOrBall = document.getElementById('numberDiv').dataset.batOrBall;
     const possibleOutcomes = [1,2,3,4,5,6];
@@ -136,6 +136,9 @@ function updateScore(run){
         if(notOut){
             if(turn == 1){
                 gameH2.innerText = "It is your turn to Bat"
+                if(computerScore == 0) {
+                    endGame();
+                }
             }
             if(computerRun == run){
                 notOut = false;
@@ -156,18 +159,24 @@ function updateScore(run){
                 }
             }
             else{
-                console.log(computerRun);
                 yourScore += run;
-                console.log(yourScore);
                 yourScoreBoard.innerText = yourScore;
+                if(turn == 1){
+                    console.log('out');
+                    if(computerScore < yourScore || computerScore == 0){
+                        endGame();
+                    }
+                }
             }
-            
         }
     }
     else if(batOrBall === 'ball'){
         if(computerNotOut){
             if(turn == 1){
                 gameH2.innerText = "It is your turn to Ball"
+                if(yourScore == 0) {
+                    endGame();
+                }
             }
             if(computerRun == run){
                 computerNotOut = false;
@@ -190,10 +199,19 @@ function updateScore(run){
             else{
                 computerScore += computerRun;
                 computerScoreBoard.innerText = computerScore;
+                if(turn == 1){
+                    if(computerScore > yourScore || yourScore == 0){
+                        endGame();
+                    }
+                }
             }   
         }
     }
     if(turn == 2){
+        endGame();
+    }
+
+function endGame(){
         if(yourScore > computerScore){
             gameH2.innerText = "You Won!!!!";
         }
@@ -216,5 +234,6 @@ function updateScore(run){
                     document.location.reload();
                 }
     }
+    balls++;
 }
 
