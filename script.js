@@ -151,6 +151,8 @@ var notOut = true;
 var computerNotOut = true;
 
 function updateScore(run){
+    clickAudio.currentTime = 0;
+    clickAudio.play();
     var batOrBall = document.getElementById('numberDiv').dataset.batOrBall;
     const possibleOutcomes = [1,2,3,4,5,6];
     var computerRun = possibleOutcomes[Math.floor(Math.random() * possibleOutcomes.length)];
