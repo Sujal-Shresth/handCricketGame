@@ -1,11 +1,32 @@
+const clickAudio = new Audio("./audio/click.mp3");
+const bgMusic = new Audio('./audio/bgMusic.mp3');
+const child = new Audio('./audio/child.mp3');
+const lostGame = new Audio('./audio/lostGame.mp3');
+const lostToss = new Audio('./audio/lostToss.mp3');
+const wonGame = new Audio('./audio/wonGame.mp3');
+const wonToss = new Audio('./audio/wonToss.mp3');
+const outAudio = new Audio('./audio/out.mp3');
+const outAudio2 = new Audio('./audio/out2.mp3');
+
+bgMusic.play();
 // the homepage elements
 const homePageParagraph = document.getElementById("homePageParagraph");
 const homePageHeading = document.getElementById("homePageHeading");
 const homePageButton = document.getElementById("homePageButton");
-var rulesCount = 0;
+const startGameSectionH2 = document.querySelector("p.start-game-section-content");
 
+var rulesCount = 0;
+function playMusic(){
+    bgMusic.currentTime = 0;
+    bgMusic.play();
+}
+function stop(){
+    bgMusic.pause();
+}
 // function to change the homepage content to display the rules
 function changeRule() {
+    clickAudio.currentTime = 0;
+    clickAudio.play();
     switch(rulesCount){
         //rule one
         case 0:
@@ -28,7 +49,7 @@ function changeRule() {
             homePageHeading.innerText = "Batting and Scoring";
             homePageParagraph.innerText = `In batting, both players throw hand signals, numbers in this case simultaneously.
             Calculate the runs based on the numbers thrown.
-            For example, if computer throws a 6, and you throw a 4, you score 4 runs. If you throw a 1 and the computer throws a 5, you get 5 runs.`
+            For example, if computer throws a 6, and you throw a 4, you score 4 runs. If you throw a 1 and the computer throws a 5, computer gets 5 runs.`
             homePageButton.innerText = "Next"
             break;
         
@@ -42,6 +63,7 @@ function changeRule() {
             anchorTag.setAttribute('href','gamePage.html');
             homePageButton.innerText = "";
             homePageButton.append(anchorTag);
+            startGameSectionH2.innerText = "Thats it!";
             break;
     }
     rulesCount++;
@@ -60,6 +82,8 @@ function decideToss(){
         var randomNumber = Math.random();
         var result;
         if (randomNumber < 0.5) {
+            child.currentTime = 0;
+            child.play();
           gameH2.innerText = "You Won the toss! Choose what you want";
             choice1.innerText = "Batting";
             choice2.innerText = "Balling";
@@ -71,6 +95,8 @@ function decideToss(){
             }
         } 
         else {
+            lostToss.currentTime = 0;
+            lostToss.play();
             randomNumber = Math.random();
             if (randomNumber < 0.5) {
                 result = 2;
@@ -123,7 +149,7 @@ var computerScore = 0;
 var turn = 0;
 var notOut = true;
 var computerNotOut = true;
-var balls = 1;
+
 function updateScore(run){
     var batOrBall = document.getElementById('numberDiv').dataset.batOrBall;
     const possibleOutcomes = [1,2,3,4,5,6];
@@ -141,7 +167,12 @@ function updateScore(run){
                 }
             }
             if(computerRun == run){
+                if(yourScore == 0){
+                    yourScoreBoard.innerText = computerScore;
+                }
                 notOut = false;
+                outAudio.currentTime = 0;
+                outAudio.play();
                 gameH2.innerText = "OUT!!";
                 turn++;
                 document.getElementById('numberDiv').dataset.batOrBall = 'ball';
@@ -179,7 +210,12 @@ function updateScore(run){
                 }
             }
             if(computerRun == run){
+                if(computerScore == 0){
+                    computerScoreBoard.innerText = computerScore;
+                }
                 computerNotOut = false;
+                outAudio2.currentTime = 0;
+                outAudio2.play();
                 gameH2.innerText = "OUT!!";
                 turn++;
                 document.getElementById('numberDiv').dataset.batOrBall = 'bat';
@@ -211,15 +247,21 @@ function updateScore(run){
         endGame();
     }
 
-function endGame(){
+    function endGame(){
         if(yourScore > computerScore){
+            wonGame.currentTime = 0;
+            wonGame.play();
             gameH2.innerText = "You Won!!!!";
         }
         else if(yourScore < computerScore){
+            lostGame.currentTime = 0;
+            lostGame.play();
             gameH2.innerText = "You Lost!!!!";
 
         }
         else if(yourScore == computerScore){
+            lostGame.currentTime = 0;
+            lostGame.play();
             gameH2.innerText = "Its a Draw!!!!";
         }
         var parent = document.getElementById("buttonDiv");

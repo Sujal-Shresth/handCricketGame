@@ -6,11 +6,18 @@
     <link rel="stylesheet" href="style.css">
     <title> Hand Cricket | Game</title>
 </head>
+<div id="musicDiv">
+    <button class="button" onclick= "playMusic()">&#128264;</button>
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    <button class="button" onclick= "stop()"><s>&#128264;</s></button>
+</div>
 <body id="gameBody">
     <div id="gameContainer">
         <section id="myScoreBoard" class="score-board">
             <h1 class="score-lable">    Your Score: </h1>
-            <span id="yourScore" class="score">0</span>
+            <span id="yourScore" class="score">Waiting Turn...</span>
         </section>
 
         <section id="game">
@@ -38,7 +45,7 @@
 
         <section id="computerScoreBoard" class="score-board">
             <h1 class="score-lable">    Computer's Score: </h1>
-            <span id="computerScore" class="score">0</span>
+            <span id="computerScore" class="score">Waiting Turn...</span>
         </section>
     </div>
     <script src="script.js"></script>

@@ -82,6 +82,7 @@ h2.start-game-section-content {
 
 p.start-game-section-content {
     font-size: 3.5vh;
+    cursor: pointer;
 }
 
 h1.rules-section-content{
@@ -137,7 +138,7 @@ p.rules-section-content{
 }
 
 .score{
-    font-size: 40px;
+    font-size: 35px;
 }
 
 h1.game-section-content{
@@ -179,4 +180,10 @@ h2.game-section-content{
 
 #numberDiv .button{
     margin: 10px;
+}
+
+#musicDiv{
+    position: absolute;
+    top: 10px;
+    left: 10px;
 }
