@@ -7,7 +7,7 @@ const wonGame = new Audio('./audio/wonGame.mp3');
 const wonToss = new Audio('./audio/wonToss.mp3');
 const outAudio = new Audio('./audio/out.mp3');
 const outAudio2 = new Audio('./audio/out2.mp3');
-
+var musicPlaying = true;
 bgMusic.play();
 // the homepage elements
 const homePageParagraph = document.getElementById("homePageParagraph");
@@ -17,8 +17,17 @@ const startGameSectionH2 = document.querySelector("p.start-game-section-content"
 
 var rulesCount = 0;
 function playMusic(){
-    bgMusic.currentTime = 0;
-    bgMusic.play();
+    if(musicPlaying == true){
+        musicPlaying = false;
+        bgMusic.pause();
+        document.getElementById('musicButton').style.textDecoration = "line-through";
+    }
+    else if (musicPlaying == false){
+        musicPlaying = true;
+        bgMusic.currentTime = 0;
+        bgMusic.play();
+        document.getElementById('musicButton').style.textDecoration = "none";
+    }
 }
 function stop(){
     bgMusic.pause();
