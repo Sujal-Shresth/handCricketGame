@@ -1,3 +1,4 @@
+// audio files
 const clickAudio = new Audio("./audio/click.mp3");
 const bgMusic = new Audio('./audio/bgMusic.mp3');
 const child = new Audio('./audio/child.mp3');
@@ -9,13 +10,14 @@ const outAudio = new Audio('./audio/out.mp3');
 const outAudio2 = new Audio('./audio/out2.mp3');
 var musicPlaying = true;
 bgMusic.play();
+
 // the homepage elements
 const homePageParagraph = document.getElementById("homePageParagraph");
 const homePageHeading = document.getElementById("homePageHeading");
 const homePageButton = document.getElementById("homePageButton");
 const startGameSectionH2 = document.querySelector("p.start-game-section-content");
 
-var rulesCount = 0;
+// function to play music
 function playMusic(){
     if(musicPlaying == true){
         musicPlaying = false;
@@ -29,9 +31,8 @@ function playMusic(){
         document.getElementById('musicButton').style.textDecoration = "none";
     }
 }
-function stop(){
-    bgMusic.pause();
-}
+
+var rulesCount = 0;
 // function to change the homepage content to display the rules
 function changeRule() {
     clickAudio.currentTime = 0;
@@ -78,6 +79,7 @@ function changeRule() {
     rulesCount++;
 }
 
+// gamePage elements
 const gameH2 = document.getElementById('gameH2');
 const choice1 = document.getElementById('choice1');
 const choice2 = document.getElementById('choice2');
@@ -86,6 +88,7 @@ const numberDiv = document.getElementById("numberDiv");
 var okButton = document.createElement('button');
 okButton.innerText = "OK";
 okButton.classList.add('button');
+
 //function to decide the toss
 function decideToss(){
         var randomNumber = Math.random();
@@ -131,13 +134,15 @@ function decideToss(){
         } 
 }
 
+// function to display that its out batting turn
 function batting(){
     console.log("BATTING");
     gameH2.innerText = "It is your turn to Bat";
     document.getElementById('numberDiv').dataset.batOrBall = 'bat';
     startGame();
 }
- 
+
+// function to display that its our balling turn
 function balling(){
     console.log("BALLING");
     gameH2.innerText = "It is your turn to Ball";
@@ -145,11 +150,13 @@ function balling(){
     startGame();
 }
 
+// function to display the number buttons
 function startGame(){
     numberDiv.style.visibility = "visible";
     buttonDiv.style.visibility = "hidden";
 }
 
+// score boards
 const yourScoreBoard = document.getElementById('yourScore');
 const computerScoreBoard = document.getElementById('computerScore');
 const handImage = document.getElementsByClassName('hand-img');
@@ -159,6 +166,7 @@ var turn = 0;
 var notOut = true;
 var computerNotOut = true;
 
+// function to update the score, onclick is used on number buttons
 function updateScore(run){
     clickAudio.currentTime = 0;
     clickAudio.play();
@@ -169,15 +177,21 @@ function updateScore(run){
     handImage[0].setAttribute('src',`./images/l${run}.png`);
     handImage[1].setAttribute('src',`./images/r${computerRun}.png`);
 
+    // to update our score during our batting
     if(batOrBall === 'bat'){
         if(notOut){
+            // if its the second turn, update turn message
             if(turn == 1){
                 gameH2.innerText = "It is your turn to Bat"
                 if(computerScore == 0) {
                     endGame();
                 }
             }
+
+            // if out
             if(computerRun == run){
+                // if out on first try, atleast update the score
+
                 if(yourScore == 0){
                     yourScoreBoard.innerText = computerScore;
                 }
@@ -200,6 +214,8 @@ function updateScore(run){
                     numberDiv.style.visibility = 'visible';
                 }
             }
+
+            // if not out 
             else{
                 yourScore += run;
                 yourScoreBoard.innerText = yourScore;
@@ -212,15 +228,21 @@ function updateScore(run){
             }
         }
     }
+
+    // to update computer's score during our balling
     else if(batOrBall === 'ball'){
         if(computerNotOut){
+            // if its the second turn, update turn message
             if(turn == 1){
                 gameH2.innerText = "It is your turn to Ball"
                 if(yourScore == 0) {
                     endGame();
                 }
             }
+
+            // if out 
             if(computerRun == run){
+                // if out on first try, atleast update the score
                 if(computerScore == 0){
                     computerScoreBoard.innerText = computerScore;
                 }
@@ -243,6 +265,8 @@ function updateScore(run){
                     numberDiv.style.visibility = 'visible';
                 }
             }
+
+            // if not out
             else{
                 computerScore += computerRun;
                 computerScoreBoard.innerText = computerScore;
@@ -258,6 +282,7 @@ function updateScore(run){
         endGame();
     }
 
+    // function to display results
     function endGame(){
         if(yourScore > computerScore){
             wonGame.currentTime = 0;
@@ -276,17 +301,17 @@ function updateScore(run){
             gameH2.innerText = "Its a Draw!!!!";
         }
         var parent = document.getElementById("buttonDiv");
-                while (parent.firstChild) {
-                parent.removeChild(parent.firstChild);
-                }
-                buttonDiv.append(okButton);
-                okButton.innerText = "NEW GAME";
-                numberDiv.style.visibility = 'hidden';
-                buttonDiv.style.visibility = 'visible';
-                okButton.onclick = () =>{
-                    document.location.reload();
-                }
+        // displaying newgame button
+        while (parent.firstChild) {
+            parent.removeChild(parent.firstChild);
+        }
+        buttonDiv.append(okButton);
+        okButton.innerText = "NEW GAME";
+        numberDiv.style.visibility = 'hidden';
+        buttonDiv.style.visibility = 'visible';
+        okButton.onclick = () =>{
+        document.location.reload();
+        }
     }
-    balls++;
 }
 

@@ -20,10 +20,12 @@ a{
     cursor: pointer; 
     font-size: 20px; 
     font-family: Poppins;
+    box-shadow: 1px 1px 2px 2px rgb(229, 224, 224);
 }
 
 .button:hover {
     background-color: rgba(54, 109, 44, 0.7); 
+    box-shadow: 1px 1px 5px 5px grey;
 }
 
 #largestContainer, #gameContainer{
