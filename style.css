@@ -26,6 +26,7 @@ a{
 .button:hover {
     background-color: rgba(54, 109, 44, 0.7); 
     box-shadow: 1px 1px 5px 5px grey;
+    color: rgba(218, 231, 42, 0.797);
 }
 
 #largestContainer, #gameContainer{
@@ -82,6 +83,9 @@ h2.start-game-section-content {
     font-size: 5vh;
 }
 
+p.start-game-section-content:hover{
+    text-shadow: 5px 5px 5px rgba(0, 128, 0, 0.662);
+}
 p.start-game-section-content {
     font-size: 3.5vh;
     cursor: pointer;
@@ -104,6 +108,10 @@ p.rules-section-content{
     font-size: 3vh;
     position: absolute;
     top: 340px;
+}
+
+p.rules-section-content:hover{
+    color: rgba(237, 252, 31, 0.911);
 }
 
 .button.rules-section-content{
