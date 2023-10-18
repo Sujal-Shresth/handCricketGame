@@ -7,7 +7,7 @@
     <title> Hand Cricket | Game</title>
 </head>
 <div id="musicDiv">
-    <button class="button" onclick= "playMusic()" ><span id="musicButton">&#128264;</span></button>
+    <button class="button" onclick= "playMusic()" ><span id="musicButton" style="text-decoration: line-through;">&#127925;</span></button>
 </div>
 <body id="gameBody">
     <div id="gameContainer">
@@ -23,7 +23,9 @@
                 <img src="./images/l0.png" alt="" class="hand-img">
                 <img src="./images/r0.png" alt="" class="hand-img">
             </div>
-
+            <div id="okDiv">
+                <button class="button" id="okButton">  OK  </button>
+            </div>
             <div id="buttonDiv" class="game-section-content">
                 <button class="button" data-choice="1" id="choice1" onclick="decideToss()">  Heads  </button>
                 <button class="button" data-choice="2" id="choice2" onclick="decideToss()">  Tails  </button>

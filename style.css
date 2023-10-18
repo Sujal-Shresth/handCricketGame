@@ -189,3 +189,7 @@ h2.game-section-content{
     top: 10px;
     left: 10px;
 }
+
+#okDiv{
+    visibility: hidden;
+}

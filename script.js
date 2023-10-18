@@ -8,8 +8,7 @@ const wonGame = new Audio('./audio/wonGame.mp3');
 const wonToss = new Audio('./audio/wonToss.mp3');
 const outAudio = new Audio('./audio/out.mp3');
 const outAudio2 = new Audio('./audio/out2.mp3');
-var musicPlaying = true;
-bgMusic.play();
+var musicPlaying = false;
 
 // the homepage elements
 const homePageParagraph = document.getElementById("homePageParagraph");
@@ -85,18 +84,18 @@ const choice1 = document.getElementById('choice1');
 const choice2 = document.getElementById('choice2');
 const buttonDiv = document.getElementById('buttonDiv');
 const numberDiv = document.getElementById("numberDiv");
-var okButton = document.createElement('button');
-okButton.innerText = "OK";
-okButton.classList.add('button');
+const okDiv = document.getElementById("okDiv");
+const okButton = document.getElementById("okButton");
 
 //function to decide the toss
 function decideToss(){
+        buttonDiv.style.visibility = 'visible';
         var randomNumber = Math.random();
         var result;
         if (randomNumber < 0.5) {
             child.currentTime = 0;
             child.play();
-          gameH2.innerText = "You Won the toss! Choose what you want";
+            gameH2.innerText = "You Won the toss! Choose what you want";
             choice1.innerText = "Batting";
             choice2.innerText = "Balling";
             choice1.onclick = () =>{
@@ -118,12 +117,10 @@ function decideToss(){
                 result = 1;
                 gameH2.innerText = "You lost the toss and the computer chose Balling";
             }
-            choice1.remove();
-            choice2.remove();
-            buttonDiv.append(okButton);
-            console.log(okButton)
-            console.log(result)
+            okDiv.style.visibility = 'visible';
+            buttonDiv.style.visibility = 'hidden';
             okButton.onclick = () =>{
+                okDiv.style.visibility = 'hidden';
                 if(result == 1){
                     batting();
                 }
@@ -202,15 +199,11 @@ function updateScore(run){
                 turn++;
                 document.getElementById('numberDiv').dataset.batOrBall = 'ball';
                 var parent = document.getElementById("buttonDiv");
-                while (parent.firstChild) {
-                parent.removeChild(parent.firstChild);
-                }
-                buttonDiv.append(okButton);
                 numberDiv.style.visibility = 'hidden';
-                buttonDiv.style.visibility = 'visible';
+                okDiv.style.visibility = 'visible';
                 okButton.onclick = () =>{
                     if(turn == 1) gameH2.innerText = "It is your turn to Ball";
-                    buttonDiv.style.visibility = 'hidden';
+                    okDiv.style.visibility = 'hidden';
                     numberDiv.style.visibility = 'visible';
                 }
             }
@@ -252,16 +245,11 @@ function updateScore(run){
                 gameH2.innerText = "OUT!!";
                 turn++;
                 document.getElementById('numberDiv').dataset.batOrBall = 'bat';
-                var parent = document.getElementById("buttonDiv");
-                while (parent.firstChild) {
-                parent.removeChild(parent.firstChild);
-                }
-                buttonDiv.append(okButton);
                 numberDiv.style.visibility = 'hidden';
-                buttonDiv.style.visibility = 'visible';
+                okDiv.style.visibility = 'visible';
                 okButton.onclick = () =>{
                     if(turn == 1) gameH2.innerText = "It is your turn to Bat";
-                    buttonDiv.style.visibility = 'hidden';
+                    okDiv.style.visibility = 'hidden';
                     numberDiv.style.visibility = 'visible';
                 }
             }
@@ -300,18 +288,43 @@ function updateScore(run){
             lostGame.play();
             gameH2.innerText = "Its a Draw!!!!";
         }
-        var parent = document.getElementById("buttonDiv");
         // displaying newgame button
-        while (parent.firstChild) {
-            parent.removeChild(parent.firstChild);
-        }
-        buttonDiv.append(okButton);
+        console.log(okDiv);
+        okDiv.style.visibility = 'visible';
         okButton.innerText = "NEW GAME";
         numberDiv.style.visibility = 'hidden';
-        buttonDiv.style.visibility = 'visible';
+        buttonDiv.style.visibility = 'hidden';
+
+        // clicking starts new game
         okButton.onclick = () =>{
-        document.location.reload();
+        newGame();
         }
+    }
+}
+
+
+//function to start a new game
+function newGame(){
+    yourScore = 0;
+    computerScore = 0;
+    turn = 0;
+    notOut = true;
+    computerNotOut = true;
+    okButton.innerText = "OK";
+    choice1.innerText = "Heads";
+    choice2.innerText = "Tails";
+    yourScoreBoard.innerText = "Waiting Turn...";
+    computerScoreBoard.innerText = "Waiting Turn...";
+    gameH2.innerText = "New Game";
+    okDiv.style.visibility='hidden';
+    buttonDiv.style.visibility = 'visible';
+    handImage[0].setAttribute('src',`./images/l0.png`);
+    handImage[1].setAttribute('src',`./images/r0.png`);
+    choice1.onclick = () =>{
+        decideToss();
+    }
+    choice1.onclick = () =>{
+        decideToss();
     }
 }
 
